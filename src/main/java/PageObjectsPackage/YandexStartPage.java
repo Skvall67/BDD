@@ -2,10 +2,13 @@ package PageObjectsPackage;
 
 import Tools.PageTitle;
 import Tools.Title;
+import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import static StepsDefinition.CommonStepDefinitions.getDriver;
 
 /**
  * Created by drygoi on 03.06.17.
@@ -26,6 +29,5 @@ public class YandexStartPage extends MainPage {
             throw new NoSuchElementException("Не удалось иницализироать страницу");
         }
     }
-
 
 }

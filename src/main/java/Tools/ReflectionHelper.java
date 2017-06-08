@@ -1,11 +1,17 @@
 package Tools;
 
+import PageObjectsPackage.MainPage;
+import org.junit.Assert;
+import org.openqa.selenium.WebElement;
+
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import static StepsDefinition.CommonStepDefinitions.Init;
 
 /**
  * Created by drygoi on 03.06.17.
@@ -37,7 +43,7 @@ public class ReflectionHelper {
             //проходитм вверх вплоть до Object класса, для захвата всех родительских полей.
             final List<Field> allFields = new ArrayList<Field>(Arrays.asList(cl.getDeclaredFields()));
             for (final Field field : allFields) {
-                if (field.isAnnotationPresent(annotation) && field.getAnnotation(ActionTitle.class).name().equals(value)) {
+                if (field.isAnnotationPresent(annotation) && field.getAnnotation(Title.class).value().equals(value)) {
 
                     fields.add(field);
                 }
@@ -47,4 +53,5 @@ public class ReflectionHelper {
         }
         return fields;
     }
+
 }

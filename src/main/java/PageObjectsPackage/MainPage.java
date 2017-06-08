@@ -4,10 +4,10 @@ import Tools.ActionTitle;
 import Tools.ReflectionHelper;
 import Tools.Title;
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 
 import java.lang.reflect.Field;
 import java.util.List;
@@ -28,14 +28,14 @@ public class MainPage {
     }
 
     @ActionTitle(name = "заполняет поле")
-    public void fillsField(String field, String value) throws ClassNotFoundException {
+    public void fillsField(String field, String value) throws ClassNotFoundException, IllegalAccessException {
         findElementByTitle(field).click();
         findElementByTitle(field).sendKeys(value);
-
     }
 
-    public WebElement findElementByTitle(String title) throws ClassNotFoundException {
-        //todo дописать сюда алгоритм поиска по классам через анотацию @ActionTitle
+
+    public WebElement findElementByTitle(String title) throws ClassNotFoundException, IllegalAccessException {
+        //todo дописать сюда алгоритм поиска по классам через анотацию @Title
         Class cl = Class.forName(Init.getName());
         List<Field> fields = ReflectionHelper.getFieldsAnnotatedWith(Init, Title.class, title);
 
@@ -44,9 +44,9 @@ public class MainPage {
         Assert.assertTrue("Колличесто полей не соответсвует ожидаемому : \"" + title + "\". Найдено: " +
                         fieldNumber + " Ожидается : 1",
                 fieldNumber == 1);
-        (WebElement) fields.get(0);
 
-
-        return getDriver().findElement(By.xpath("БОЛВАНКА, сюда рефликсивный поиск по классам покета виплить"));
+        Field field = fields.get(0);
+        WebElement el = (WebElement) field.get(this);
+        return el;
     }
 }
