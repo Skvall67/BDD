@@ -34,6 +34,12 @@ public class MainPage {
         findElementByTitle(field).sendKeys(value);
     }
 
+    @ActionTitle(name = "заполняет поле фильтра")
+    public void fillsField(String field) throws ClassNotFoundException, IllegalAccessException {
+        findElementByTitle(field).click();
+        findElementByTitle(field).sendKeys(String.valueOf(YandexStartPage.minCost));
+    }
+
 
 
 
