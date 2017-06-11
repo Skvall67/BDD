@@ -4,16 +4,17 @@ import Tools.ActionTitle;
 import Tools.ReflectionHelper;
 import Tools.Title;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 
 import java.lang.reflect.Field;
 import java.util.List;
 
 import static StepsDefinition.CommonStepDefinitions.Init;
 import static StepsDefinition.CommonStepDefinitions.getDriver;
+//import static org.openqa.selenium.support.ui.ExpectedConditions.findElements;
 
 
 /**
@@ -34,6 +35,8 @@ public class MainPage {
     }
 
 
+
+
     public WebElement findElementByTitle(String title) throws ClassNotFoundException, IllegalAccessException {
         //todo дописать сюда алгоритм поиска по классам через анотацию @Title
         Class cl = Class.forName(Init.getName());
@@ -41,12 +44,28 @@ public class MainPage {
 
         int fieldNumber = fields.size();
 
-        Assert.assertTrue("Колличесто полей не соответсвует ожидаемому : \"" + title + "\". Найдено: " +
+        Assert.assertTrue("Количесто полей не соответсвует ожидаемому : \"" + title + "\". Найдено: " +
                         fieldNumber + " Ожидается : 1",
                 fieldNumber == 1);
 
         Field field = fields.get(0);
         WebElement el = (WebElement) field.get(this);
+        return el;
+    }
+
+    public List<WebElement> findElementsByTitle(String title) throws ClassNotFoundException, IllegalAccessException {
+        //todo дописать сюда алгоритм поиска по классам через анотацию @Title
+        Class cl = Class.forName(Init.getName());
+        List<Field> fields = ReflectionHelper.getFieldsAnnotatedWith(Init, Title.class, title);
+
+        int fieldNumber = fields.size();
+
+        Assert.assertTrue("Количесто полей не соответсвует ожидаемому : \"" + title + "\". Найдено: " +
+                        fieldNumber + " Ожидается : 1",
+                fieldNumber == 1);
+
+        Field field = fields.get(0);
+        List<WebElement> el = (List<WebElement>) field.get(this);
         return el;
     }
 }

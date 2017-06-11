@@ -12,7 +12,9 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.reflections.Reflections;
 
@@ -32,10 +34,10 @@ public class CommonStepDefinitions {
 
     public static WebDriver getDriver() {
         if (driver == null) {
-            System.setProperty("webdriver.firefox.marionette", "/home/drygoi/IdeaProjects/CucumberForPractise/src/geckodriver");
+            System.setProperty("webdriver.chrome.driver", "C:\\Users\\i.ruzhentsev\\Downloads\\chromedriver.exe");
             DesiredCapabilities capabilities = DesiredCapabilities.firefox();
             capabilities.setCapability("marionette", true);
-            driver = new FirefoxDriver();
+            driver = new ChromeDriver();
         }
         return driver;
     }

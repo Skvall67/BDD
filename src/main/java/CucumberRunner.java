@@ -7,10 +7,10 @@ import org.junit.runner.RunWith;
  */
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        format={"pretty", "html:/home/drygoi/IdeaProjects/CucumberForPractise/src/target/report.html"},
-        features={"/home/drygoi/IdeaProjects/CucumberForPractise/src/main/resources"},
+//        format={"pretty", "C:\\Users\\i.ruzhentsev\\workspaceidea\\BDD\\src\\target\\report.html"},
+        features={"C:\\Users\\i.ruzhentsev\\workspaceidea\\BDD\\src\\main\\resources"},
         glue = {"StepsDefinition"},
-        tags = {"@YandexMarketTest"}
+        tags = {"@InternetExplorerTask"}
 
 )
 
