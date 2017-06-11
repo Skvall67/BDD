@@ -138,9 +138,25 @@ public class YandexStartPage extends MainPage {
         }
 
     @ActionTitle(name = "проверяет минимальную цену")
-    public void checkMinCost(String value, String address) throws ClassNotFoundException, IllegalAccessException, InterruptedException {
-        List<WebElement> addressList = findElementsByTitle(address);
-        List<WebElement> list = findElementsByTitle(value);
+    public void checkMinCost(String value) throws ClassNotFoundException, IllegalAccessException, InterruptedException {
+        List<WebElement> addressList = findElementsByTitle(value);
+        //Assert.assertTrue(list.size()!=0);
+        //String oneMoreAddressMin = addressList.getText();
+        String s = "";
+        for (WebElement we : addressList) {
+            if(we.getText().contains(addressMin))
+            {
+                s = we.getText();
+                System.out.println("Тест пройден");
+                break;
+            }
+        }
+        Assert.assertTrue("Совпадение по квартире не найдено", s.equalsIgnoreCase(addressMin));
+
+//        int oneMoreMinCost = Integer.parseInt(list.getText().replaceAll("\\D", ""));
+//        Assert.assertTrue("Адреса не совпадают!!!", oneMoreAddressMin.equalsIgnoreCase(addressMin));
+//        Assert.assertTrue("Цены не совпадают!!!", oneMoreMinCost == minCost);
+//        System.out.println("Проверка пройдена, адрес " + addressMin + " равен адресу" + oneMoreAddressMin);
 
     }
 
