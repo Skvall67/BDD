@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/CucumberForPractise.iml" filepath="$PROJECT_DIR$/CucumberForPractise.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ForTests.iml" filepath="$PROJECT_DIR$/ForTests.iml" />
     </modules>
   </component>
 </project>

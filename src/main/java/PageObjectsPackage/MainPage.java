@@ -29,7 +29,8 @@ public class MainPage {
     }
 
     @ActionTitle(name = "заполняет поле")
-    public void fillsField(String field, String value) throws ClassNotFoundException, IllegalAccessException {
+    public void fillsField(String field, String value) throws ClassNotFoundException, IllegalAccessException, InterruptedException {
+        Thread.sleep(1000);
         findElementByTitle(field).click();
         findElementByTitle(field).sendKeys(value);
     }

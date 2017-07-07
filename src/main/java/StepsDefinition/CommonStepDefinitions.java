@@ -22,6 +22,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by drygoi on 20.05.17.
@@ -42,6 +43,12 @@ public class CommonStepDefinitions {
         return driver;
     }
 
+    public static WebDriver quitDriver() {
+        driver.quit();
+        driver = null;
+        return driver;
+    }
+
     @Given("^open google site$")
     public void goGoGoogle() {
         getDriver();
@@ -51,7 +58,10 @@ public class CommonStepDefinitions {
     @Given("^открывает сайт \"([^\"]+)\"$")
     public void openSite(String siteAddress) {
         getDriver();
+        driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+        driver.manage().window().maximize();
         driver.get(siteAddress);
+
     }
 
 
