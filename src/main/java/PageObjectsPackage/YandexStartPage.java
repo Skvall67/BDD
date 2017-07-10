@@ -388,6 +388,14 @@ public class YandexStartPage extends MainPage {
     @Title(value = "Выбор типа актива функционального")
     WebElement activePeredanniyFunc;
 
+    @FindBy(xpath = "//select[@title = 'Записей на стр.']")
+    @Title(value = "Количество записей")
+    WebElement number1;
+
+    @FindBy(xpath = "//option[text() = '100']")
+    @Title(value = "100")
+    WebElement number100;
+
     @FindBy(xpath = "//select[@name = 'accountFlag']")
     @Title(value = "Признак счёта")
     WebElement priznakS4eta;
