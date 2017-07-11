@@ -4,6 +4,7 @@ import Tools.ActionTitle;
 import Tools.PageTitle;
 import Tools.Title;
 import com.sun.xml.internal.ws.policy.AssertionValidationProcessor;
+import cucumber.api.java.uk.Нехай;
 import javafx.scene.web.WebView;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -31,7 +32,7 @@ import static StepsDefinition.CommonStepDefinitions.quitDriver;
 public class YandexStartPage extends MainPage {
     public static int minCost;
     public static String addressMin;
-    public static boolean flag;
+    public static boolean flag = true;
 
     @FindBy(id = "header-search")
     @Title(value = "Окно поиска")
@@ -621,7 +622,7 @@ public class YandexStartPage extends MainPage {
             WebElement radioButton = getDriver().findElement(By.xpath(s));
             radioButton.click();
             next.click();
-            flag = true;
+            flag = false;
         } catch (NoSuchElementException e) {
             System.out.println("Создание нового пользователя");
         }
@@ -641,7 +642,7 @@ public class YandexStartPage extends MainPage {
     @ActionTitle(name = "заполняет поле с проверкой")
     public void fillsFieldChecked(String field, String value) throws ClassNotFoundException, IllegalAccessException, InterruptedException {
 
-        if (!flag) {
+        if (flag) {
             Thread.sleep(1000);
             findElementByTitle(field).click();
             findElementByTitle(field).sendKeys(value);
@@ -797,10 +798,13 @@ public class YandexStartPage extends MainPage {
 
     @ActionTitle(name = "нажимает на кнопку с проверкой")
     public void clickOnButtonChecked(String field) throws ClassNotFoundException, IllegalAccessException, InterruptedException {
-        if (!flag) {
+        if (flag) {
             Thread.sleep(1000);
             wait.until(ExpectedConditions.elementToBeClickable(findElementByTitle(field)));
             findElementByTitle(field).click();
+        }
+        if (field == "Назначить") {
+            flag = true;
         }
     }
 

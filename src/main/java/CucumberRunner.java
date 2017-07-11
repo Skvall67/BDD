@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
 //        format={"pretty", "C:\\Users\\i.ruzhentsev\\workspaceidea\\BDD\\src\\target\\report.html"},
         features={"C:\\Users\\i.ruzhentsev\\workspaceidea\\BDD\\src\\main\\resources"},
         glue = {"StepsDefinition"},
-        tags = {"@scen8"}
+        tags = {"@scen18"}
 
 )
 
